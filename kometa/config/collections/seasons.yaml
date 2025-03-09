@@ -1,0 +1,87 @@
+templates:
+  SEASON:
+    builder_level: show
+    default:
+      sort_title: 9
+      poster: missing-poster.jpg
+    sort_title: +B<<sort_title>>+<<collection_name>>+
+    file_poster: config/collections/posters/<<poster>>
+    schedule: <<schedule>>
+    sync_mode: sync
+
+collections:
+  Valentine-Day:
+    template:
+      name: SEASON
+      poster: seasons-valentine.jpg
+      schedule: range(02/09-02/19)
+    trakt_list:
+    - https://trakt.tv/users/triadcool/lists/valentine
+    - https://trakt.tv/users/tarzanislav/lists/valentine
+    - https://trakt.tv/users/craigywulse23/lists/valentines-movies
+    - https://trakt.tv/users/idealbrandon/lists/holiday-valentines
+    - https://trakt.tv/users/sympli/lists/valentines-day-movies
+
+  Labor-Day:
+    template:
+      name: SEASON
+      poster: seasons-labor.jpg
+      schedule: range(04/26-05/07)
+    trakt_list:
+    - https://trakt.tv/users/blazin887/lists/labor-day-movies
+  
+  Mothers-Day:
+    template:
+      name: SEASON
+      poster: seasons-mother.jpg
+      schedule: range(05/05-05/15)
+    trakt_list:
+    - https://trakt.tv/users/movie-pal/lists/mother-s-day
+    - https://trakt.tv/users/movie-pal/lists/women-s-day
+    - https://trakt.tv/users/mdm144/lists/mother-s-day
+    - https://trakt.tv/users/sympli/lists/mothers-day-movies
+
+  Fathers-Day:
+    template:
+      name: SEASON
+      poster: seasons-father.jpg
+      schedule: range(05/22-06/05)
+    trakt_list:
+    - https://trakt.tv/users/sympli/lists/fathers-day-movies
+    - https://trakt.tv/users/blazin887/lists/fathers-day-movies
+    - https://trakt.tv/users/threespoons/lists/fathers-day-movies
+
+  Halloween:
+    template:
+      name: SEASON
+      poster: seasons-halloween.jpg
+      schedule: range(10/10-11/10)
+    trakt_list:
+    - https://trakt.tv/users/ubifi/lists/halloweenie
+    - https://trakt.tv/users/abbelea/lists/tv-movies-this-is-halloween-halloween-halloween
+    - https://trakt.tv/users/kairbear08/lists/halloween
+    - https://trakt.tv/users/29zombies/lists/halloween
+    - https://trakt.tv/users/mybicycle/lists/halloween
+
+  Christmas:
+    template:
+      name: SEASON
+      poster: seasons-christmas.jpg
+      schedule: range(12/01-01/06)
+    trakt_list:
+    - https://trakt.tv/users/movistapp/lists/christmas-movies
+    - https://trakt.tv/users/questdvd/lists/absolute-hayes-christmas-classics
+    - https://trakt.tv/users/littlestella3/lists/christmas
+    - https://trakt.tv/users/outspoken/lists/christmas
+
+  New-Year:
+    template:
+      name: SEASON
+      poster: seasons-years.jpg
+      schedule: range(12/28-02/07)
+    trakt_list:
+    - https://trakt.tv/users/galacticboy/lists/new-years
+    - https://trakt.tv/users/heartbraden/lists/new-years
+    - https://trakt.tv/users/acdelong96/lists/new-years
+    - https://trakt.tv/users/gullibletransport/lists/new-year
+    - https://trakt.tv/users/mdm144/lists/new-year

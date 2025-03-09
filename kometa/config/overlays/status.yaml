@@ -1,0 +1,75 @@
+templates:
+  STATUS:
+    builder_level: show
+    default:
+      back_color: '#3b4252' # black
+      font_color: '#eceff4' # white
+      text: text(<<overlay_name>>)
+    overlay:
+      # overlay-settings
+      name: <<text>>
+      font: config/overlays/fonts/Roboto-Medium.ttf
+      font_color: <<font_color>>
+      font_size: 76
+      # position-settings
+      vertical_align: top
+      vertical_offset: 0
+      horizontal_align: left
+      horizontal_offset: 0
+      # background-settings
+      back_color: <<back_color>>
+      back_width: 1000
+      back_height: 100
+      back_radius: 0
+
+overlays:
+  Airing_Banner:
+    template:
+      name: STATUS
+      back_color: '#a3be8c' # green
+      font_color: '#3b4252' # black
+      text: text(Airing)
+    suppress_overlays:
+    - Returning_Banner
+    - Ended_Banner
+    - Unknown_Banner
+    plex_search:
+      validate: false
+      any:
+        release: 30
+        episode_air_date: 30
+
+  Returning_Banner:
+    template:
+      name: STATUS
+      back_color: '#81a1c1' # blue
+      font_color: '#3b4252' # black
+      text: text(Returning)
+    suppress_overlays:
+    - Ended_Banner
+    - Unknown_Banner
+    plex_all: true
+    filters:
+      tmdb_status:
+      - returning
+      - production
+
+  Ended_Banner:
+    template:
+      name: STATUS
+      back_color: '#d08770' # orange
+      font_color: '#3b4252' # black
+      text: text(Ended)
+    suppress_overlays:
+    - Unknown_Banner
+    plex_all: true
+    filters:
+      tmdb_status:
+      - ended
+      - canceled
+
+  Unknown_Banner:
+    template:
+      name: STATUS
+      text: text(Unknown)
+    plex_all: true

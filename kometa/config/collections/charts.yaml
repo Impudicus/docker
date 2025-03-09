@@ -1,0 +1,68 @@
+templates:
+  CHARTS:
+    builder_level: show
+    default:
+      sort_title: 9
+      poster: missing-poster.jpg
+    sort_title: +A<<sort_title>>+<<collection_name>>+
+    file_poster: config/collections/posters/<<poster>>
+    schedule: daily
+    sync_mode: sync
+
+collections:
+  Newly-Released:
+    template:
+      name: CHARTS
+      sort_title: 1
+      poster: charts-newly-released.jpg
+    plex_search:
+      validate: false
+      any:
+        release: 30
+      sort_by: release.desc
+    collection_order: custom
+
+  Newly-Released-Episodes:
+    template:
+      name: CHARTS
+      sort_title: 2
+      poster: charts-newly-released-episodes.jpg
+    plex_search:
+      validate: false
+      any:
+        episode_air_date: 30
+      sort_by: episode_release.desc
+    collection_order: custom
+
+  Recently-Added:
+    template:
+      name: CHARTS
+      sort_title: 3
+      poster: charts-recently-added.jpg
+    plex_search:
+      validate: false
+      any:
+        added: 30
+      sort_by: added.desc
+    collection_order: custom
+
+  Popular:
+    template:
+      name: CHARTS
+      sort_title: 4
+      poster: charts-popular.jpg
+    tmdb_trending_daily: 30
+    tmdb_trending_weekly: 30
+    tmdb_popular: 30
+
+  Top-Rated:
+    template:
+      name: CHARTS
+      sort_title: 5
+      poster: charts-top-rated.jpg
+    plex_search:
+      validate: false
+      any:
+        audience_rating.gte: 8.0
+      sort_by: audience_rating.desc
+    collection_order: custom

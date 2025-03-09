@@ -1,0 +1,150 @@
+templates:
+  BESTOF:
+    builder_level: show
+    default:
+      sort_title: 9
+      poster: missing-poster.jpg
+    sort_title: +D<<sort_title>>+<<collection_name>>+
+    file_poster: config/collections/posters/<<poster>>
+    collection_order: audience_rating.desc
+    filters:
+      audience_rating.gte: 7.5
+    limit: 50
+    schedule: daily
+    sync_mode: sync
+
+collections:
+  Best-of-2025:
+    template:
+      name: BESTOF
+      sort_title: 1
+      poster: bestof-2025.jpg
+    plex_search:
+      validate: false
+      any:
+        year:
+        - 2025
+
+  Best-of-2024:
+    template:
+      name: BESTOF
+      sort_title: 2
+      poster: bestof-2024.jpg
+    plex_search:
+      validate: false
+      any:
+        year:
+        - 2024
+
+  Best-of-2023:
+    template:
+      name: BESTOF
+      sort_title: 3
+      poster: bestof-2023.jpg
+    plex_search:
+      validate: false
+      any:
+        year:
+        - 2023
+
+  Best-of-2022:
+    template:
+      name: BESTOF
+      sort_title: 4
+      poster: bestof-2022.jpg
+    plex_search:
+      validate: false
+      any:
+        year:
+        - 2022
+
+  Best-of-2021:
+    template:
+      name: BESTOF
+      sort_title: 5
+      poster: bestof-2021.jpg
+    plex_search:
+      validate: false
+      any:
+        year:
+        - 2021
+
+  Best-of-20s:
+    template:
+      name: BESTOF
+      sort_title: 6
+      poster: bestof-20s.jpg
+    plex_search:
+      validate: false
+      any:
+        year:
+        - 2029
+        - 2028
+        - 2027
+        - 2026
+        - 2025
+        - 2024
+        - 2023
+        - 2022
+        - 2021
+        - 2020
+
+  Best-of-10s:
+    template:
+      name: BESTOF
+      sort_title: 7
+      poster: bestof-10s.jpg
+    plex_search:
+      validate: false
+      any:
+        year:
+        - 2019
+        - 2018
+        - 2017
+        - 2016
+        - 2015
+        - 2014
+        - 2013
+        - 2012
+        - 2011
+        - 2010
+
+  Best-of-00s:
+    template:
+      name: BESTOF
+      sort_title: 8
+      poster: bestof-00s.jpg
+    plex_search:
+      validate: false
+      any:
+        year:
+        - 2009
+        - 2008
+        - 2007
+        - 2006
+        - 2005
+        - 2004
+        - 2003
+        - 2002
+        - 2001
+        - 2000
+
+  Best-of-90s:
+    template:
+      name: BESTOF
+      sort_title: 9
+      poster: bestof-90s.jpg
+    plex_search:
+      validate: false
+      any:
+        year:
+        - 1999
+        - 1998
+        - 1997
+        - 1996
+        - 1995
+        - 1994
+        - 1993
+        - 1992
+        - 1991
+        - 1990

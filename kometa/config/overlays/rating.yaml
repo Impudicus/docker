@@ -1,0 +1,48 @@
+templates:
+  RATING:
+    builder_level: show
+    default:
+      back_color: '#e5e9f0' # white
+      font_color: '#3b4252' # black
+    overlay:
+      # overlay-settings
+      name: text(<<audience_rating>>)
+      font: config/overlays/fonts/Roboto-Bold.ttf
+      font_color: <<font_color>>
+      font_size: 84
+      # position-settings
+      vertical_align: top
+      vertical_offset: 1335
+      horizontal_align: left
+      horizontal_offset: 40
+      # background-settings
+      back_color: <<back_color>>
+      back_width: 175
+      back_height: 125
+      back_radius: 25
+
+overlays:
+  High-Rated:
+    template:
+      name: RATING
+      back_color: '#a3be8c' # green
+    plex_search:
+      all:
+        audience_rating.gte: 7.8
+
+  Medium-Rated:
+    template:
+      name: RATING
+      back_color: '#ebcb8b' # yellow
+    plex_search:
+      all:
+        audience_rating.lt: 7.8
+        audience_rating.gte: 6.3
+
+  Low-Rated:
+    template:
+      name: RATING
+      back_color: '#bf616a' # red
+    plex_search:
+      all:
+        audience_rating.lt: 6.3

@@ -1,0 +1,57 @@
+templates:
+  RATED:
+    builder_level: show
+    default:
+      sort_title: 9
+      poster: missing-poster.jpg
+    sort_title: +F<<sort_title>>+<<collection_name>>+
+    file_poster: config/collections/posters/<<poster>>
+    collection_order: release.desc
+    schedule: daily
+    sync_mode: sync
+
+collections:
+  FSK-0:
+    template:
+      name: RATED
+      sort_title: 1
+      poster: rated-0.jpg
+    plex_search:
+      validate: false
+      any:
+        content_rating:
+        - de/0
+        - de/6
+
+  FSK-12:
+    template:
+      name: RATED
+      sort_title: 2
+      poster: rated-12.jpg
+    plex_search:
+      validate: false
+      any:
+        content_rating:
+        - de/12
+
+  FSK-16:
+    template:
+      name: RATED
+      sort_title: 3
+      poster: rated-16.jpg
+    plex_search:
+      validate: false
+      any:
+        content_rating:
+        - de/16
+
+  FSK-18:
+    template:
+      name: RATED
+      sort_title: 4
+      poster: rated-18.jpg
+    plex_search:
+      validate: false
+      any:
+        content_rating:
+        - de/18

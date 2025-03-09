@@ -1,0 +1,12 @@
+templates:
+  GRADIENT:
+    builder_level: show
+    overlay:
+      name: gradient-top
+      file: config/overlays/images/gradient-top.png
+
+overlays:
+  Gradient-Top:
+    template:
+      name: GRADIENT
+    plex_all: true

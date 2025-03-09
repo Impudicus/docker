@@ -1,0 +1,181 @@
+templates:
+  NETWORK:
+    builder_level: show
+    default:
+      sort_title: 9
+      poster: missing-poster.jpg
+    sort_title: +E<<sort_title>>+<<collection_name>>+
+    file_poster: config/collections/posters/<<poster>>
+    collection_order: release.desc
+    schedule: daily
+    sync_mode: sync
+
+collections:
+  # AMC:
+  #   template:
+  #     name: NETWORK
+  #     poster: network-amc.jpg
+  #   plex_search:
+  #     validate: false
+  #     any:
+  #       network:
+  #       - AMC
+  #       - AMC+
+
+  Apple-TV:
+    template:
+      name: NETWORK
+      poster: network-apple-tv.jpg
+    plex_search:
+      validate: false
+      any:
+        network:
+        - Comedy Central
+        - AppleTV
+        - Apple TV+
+        - Syfy
+        - The CW
+
+  # BBC:
+  #   template:
+  #     name: NETWORK
+  #     poster: network-bbc.jpg
+  #   plex_search:
+  #     validate: false
+  #     any:
+  #       network:
+  #       - BBC
+  #       - BBC America
+  #       - BBC Two
+  #       - BBC One
+
+  Disney:
+    template:
+      name: NETWORK
+      poster: network-disney.jpg
+    plex_search:
+      validate: false
+      any:
+        network:
+        - ABC
+        - ABC Comedy
+        - ABC Family
+        - Disney
+        - Disney+
+        - FX
+        - Freeform
+        - Lifetime
+
+  # Fox:
+  #   template:
+  #     name: NETWORK
+  #     poster: network-fox.jpg
+  #   plex_search:
+  #     validate: false
+  #     any:
+  #       network:
+  #       - Fox
+
+  HBO:
+    template:
+      name: NETWORK
+      poster: network-hbo.jpg
+    plex_search:
+      validate: false
+      any:
+        network:
+        - HBO
+        - HBO Asia
+        - HBO Max
+        - Max
+
+  Hulu:
+    template:
+      name: NETWORK
+      poster: network-hulu.jpg
+    plex_search:
+      validate: false
+      any:
+        network:
+        - Hulu
+
+  # NBC:
+  #   template:
+  #     name: NETWORK
+  #     poster: network-nbc.jpg
+  #   plex_search:
+  #     validate: false
+  #     any:
+  #       network:
+  #       - NBC
+  #       - Peacock
+  #       - Syfy
+  #       - USA Network
+
+  Netflix:
+    template:
+      name: NETWORK
+      poster: network-netflix.jpg
+    plex_search:
+      validate: false
+      any:
+        network:
+        - Antena 3
+        - Channel 4
+        - Netflix
+
+  Paramount:
+    template:
+      name: NETWORK
+      poster: network-paramount.jpg
+    plex_search:
+      validate: false
+      any:
+        network:
+        - CBS
+        - CBS All Access
+        - Paramount
+        - Paramount+
+        - Paramount Network
+        - Spectrum
+
+  Prime-Video:
+    template:
+      name: NETWORK
+      poster: network-prime-video.jpg
+    plex_search:
+      validate: false
+      any:
+        network:
+        - Amazon
+        - Amazon Freevee
+        - Epix
+        - Freeform
+        - MGM+
+        - Prime Video
+        - Stan
+        - Starz
+        - TNT
+
+  # Showtime:
+  #   template:
+  #     name: NETWORK
+  #     poster: network-showtime.jpg
+  #   plex_search:
+  #     validate: false
+  #     any:
+  #       network:
+  #       - Showtime
+
+  # Sky:
+  #   template:
+  #     name: NETWORK
+  #     poster: network-sky.jpg
+  #   plex_search:
+  #     validate: false
+  #     any:
+  #       network:
+  #       - Sky
+  #       - Sky Atlantik
+  #       - Sky Max
+  #       - Sky One

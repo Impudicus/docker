@@ -1,0 +1,52 @@
+templates:
+  AWARD:
+    builder_level: show
+    default:
+      sort_title: 9
+      poster: missing-poster.jpg
+    sort_title: +C<<sort_title>>+<<collection_name>>+
+    file_poster: config/collections/posters/<<poster>>
+    collection_order: release.desc  # custom
+    schedule: daily
+    sync_mode: sync
+
+collections:
+  Oscar-Winners:
+    template:
+      name: AWARD
+      sort_title: 1
+      poster: awards-oscars.jpg
+    imdb_award:
+      event_id: ev0000003
+      event_year: 2000-current
+      winning: true
+
+  Emmy-Winners:
+    template:
+      name: AWARD
+      sort_title: 2
+      poster: awards-emmy.jpg
+    imdb_award:
+      event_id: ev0000223
+      event_year: 2000-current
+      winning: true
+
+  Golden-Globe-Winners:
+    template:
+      name: AWARD
+      sort_title: 3
+      poster: awards-golden-globe.jpg
+    imdb_award:
+      event_id: ev0000292
+      event_year: 2000-current
+      winning: true
+
+  Critics-Choice-Winners:
+    template:
+      name: AWARD
+      sort_title: 4
+      poster: awards-critics-choice.jpg
+    imdb_award:
+      event_id: ev0000133
+      event_year: 2000-current
+      winning: true

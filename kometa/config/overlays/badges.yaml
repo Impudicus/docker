@@ -1,0 +1,180 @@
+templates:
+  BADGE:
+    builder_level: show
+    default:
+      back_color: '#3b4252' # black
+      font_color: '#e5e9f0' # white
+      icon: light/not-found.png
+      weight: 0
+    overlay:
+      # overlay-settings
+      name: <<overlay_name>>
+      file: config/overlays/icons/<<icon>>
+      # position-settings
+      queue: QUEUE
+      weight: <<weight>>
+      # background-settings
+      back_color: <<back_color>>
+      back_width: 175
+      back_height: 175
+      back_radius: 25
+
+queues:
+  QUEUE:
+    - vertical_align: top
+      vertical_offset: 1100
+      horizontal_align: left
+      horizontal_offset: 40
+    - vertical_align: top
+      vertical_offset: 900
+      horizontal_align: left
+      horizontal_offset: 40
+    - vertical_align: top
+      vertical_offset: 700
+      horizontal_align: left
+      horizontal_offset: 40
+    - vertical_align: top
+      vertical_offset: 500
+      horizontal_align: left
+      horizontal_offset: 40
+    - vertical_align: top
+      vertical_offset: 300
+      horizontal_align: left
+      horizontal_offset: 40
+
+overlays:
+  Bad-Quality_Badge:
+    template:
+      name: BADGE
+      back_color: '#bf616a' # red
+      icon: dark/warning.png
+      weight: 9
+    plex_search:
+      any:
+        edition:
+        - Bad Audio
+        - Bad Quality
+        - Bad Video
+        - English Audio
+  
+  USK-18_Badge:
+    template:
+      name: BADGE
+      back_color: '#bf616a' # red
+      icon: dark/restricted.png
+      weight: 8
+    plex_search:
+      validate: false
+      any:
+        content_rating:
+        - de/18
+  
+  Newly-Released_Badge:
+    template:
+      name: BADGE
+      back_color: '#a3be8c' # green
+      icon: dark/new.png
+      weight: 7
+    suppress_overlays:
+    - Newly-Released-Episodes_Badge
+    plex_search:
+      validate: false
+      any:
+        release: 30
+
+  Newly-Released-Episodes_Badge:
+    template:
+      name: BADGE
+      back_color: '#a3be8c' # green
+      icon: dark/new.png
+      weight: 7
+    plex_search:
+      validate: false
+      any:
+        episode_air_date: 30
+
+  Recently-Added_Badge:
+    template:
+      name: BADGE
+      back_color: '#a3be8c' # green
+      icon: dark/add.png
+      weight: 6
+    plex_search:
+      validate: false
+      any:
+        added: 30
+  
+  Popular_Badge:
+    template:
+      name: BADGE
+      back_color: '#3b4252' # black
+      icon: light/fire.png
+      weight: 5
+    tmdb_trending_daily: 30
+    tmdb_trending_weekly: 30
+    tmdb_popular: 30
+
+  Top-Rated_Badge:
+    template:
+      name: BADGE
+      back_color: '#3b4252' # black
+      icon: light/stars.png
+      weight: 4
+    plex_search:
+      validate: false
+      any:
+        audience_rating.gte: 8.0
+  
+
+  Oscar-Winners_Badge:
+    template:
+      name: BADGE
+      back_color: '#3b4252' # black
+      icon: light/award-oscar.png
+      weight: 3
+    suppress_overlays:
+    - Emmy-Winners_Badge
+    - Golden-Globe_Badge
+    - Critics-Choice_Badge
+    imdb_award:
+      event_id: ev0000003
+      event_year: 2000-current
+      winning: true
+
+  Emmy-Winners_Badge:
+    template:
+      name: BADGE
+      back_color: '#3b4252' # black
+      icon: light/award-brit.png
+      weight: 3
+    suppress_overlays:
+    - Golden-Globe_Badge
+    - Critics-Choice_Badge
+    imdb_award:
+      event_id: ev0000223
+      event_year: 2000-current
+      winning: true
+
+  Golden-Globe_Badge:
+    template:
+      name: BADGE
+      back_color: '#3b4252' # black
+      icon: light/award-globe.png
+      weight: 3
+    suppress_overlays:
+    - Golden-Globe_Badge
+    imdb_award:
+      event_id: ev0000292
+      event_year: 2000-current
+      winning: true
+
+  Critics-Choice_Badge:
+    template:
+      name: BADGE
+      back_color: '#3b4252' # black
+      icon: light/award-brit.png
+      weight: 3
+    imdb_award:
+      event_id: ev0000133
+      event_year: 2000-current
+      winning: true

@@ -1,0 +1,20 @@
+name: 'kometa'
+
+networks:
+  media:
+    external: true
+
+services:
+  kometa:
+    image: kometateam/kometa:latest
+    container_name: kometa
+    env_file: .env
+    networks:
+      - media
+    restart: no
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/docker/kometa/config:/config:rw
+      - /mnt/pool2/movies:/config/assets/movies:ro
+      - /mnt/pool2/series:/config/assets/series:ro

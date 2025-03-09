@@ -1,0 +1,115 @@
+libraries:
+  Filme:
+    collection_files:
+      - file: config/collections/charts.yaml
+      - file: config/collections/seasons.yaml
+      - file: config/collections/awards.yaml
+      - file: config/collections/bestof.yaml
+      - file: config/collections/studios.yaml
+      - file: config/collections/rated.yaml
+    overlay_files:
+      - file: config/overlays/gradient-top.yaml
+      - file: config/overlays/badges.yaml
+      - file: config/overlays/rating.yaml
+      - file: config/overlays/editions.yaml
+    operations:
+      assets_for_all: true
+      mass_audience_rating_update: tmdb
+      mass_critic_rating_update: tmdb
+      mass_genre_update: tmdb
+  Serien:
+    collection_files:
+      - file: config/collections/charts.yaml
+      - file: config/collections/seasons.yaml
+      - file: config/collections/awards.yaml
+      - file: config/collections/bestof.yaml
+      - file: config/collections/network.yaml
+      - file: config/collections/rated.yaml
+    overlay_files:
+      - file: config/overlays/gradient-bot.yaml
+      - file: config/overlays/badges.yaml
+      - file: config/overlays/rating.yaml
+      - file: config/overlays/status.yaml
+    operations:
+      assets_for_all: true
+      mass_audience_rating_update: tmdb
+      mass_critic_rating_update: tmdb
+      mass_genre_update: tmdb
+settings:
+  run_order:
+  - operations
+  - metadata
+  - collections
+  - overlays
+  # CACHE
+  cache: true
+  cache_expiration: 30
+  # ASSETS
+  asset_directory: 
+    - config/assets/movies
+    - config/assets/series
+  asset_folders: true
+  asset_depth: 0
+  create_asset_folders: false
+  prioritize_assets: true
+  dimensional_asset_rename: false
+  download_url_assets: false
+  show_missing_season_assets: false
+  show_missing_episode_assets: false
+  show_asset_not_needed: false
+  show_missing_assets: false
+  # BASIC
+  sync_mode: sync
+  minimum_items: 1
+  default_collection_order:
+  delete_below_minimum: true
+  delete_not_scheduled: true
+  run_again_delay: 2
+  missing_only_released: false
+  only_filter_missing: false
+  show_unmanaged: true
+  show_unconfigured: true
+  show_filtered: false
+  show_options: false
+  show_missing: false
+  save_report: false
+  tvdb_language: eng
+  ignore_ids:
+  ignore_imdb_ids:
+  item_refresh_delay: 0
+  playlist_sync_to_users: all
+  playlist_exclude_users:
+  playlist_report: false
+  verify_ssl: true
+  custom_repo:
+  overlay_artwork_filetype: jpg
+  overlay_artwork_quality: 90
+plex:
+  url: http://plex:32400
+  token: hmyCY2pJpuznSNJHDBaK
+  timeout: 60
+  db_cache:
+  clean_bundles: false
+  empty_trash: false
+  optimize: false
+  verify_ssl:
+tmdb:
+  apikey: 43829e52e661510f2bf04bcc1b5bafe3
+  language: de
+  region: DE
+  cache_expiration: 60
+tautulli:
+  url: http://tautulli:8181
+  apikey: af08457858d149ee97a3e4f3f86161dd
+trakt:
+  client_id: e3f2e5ca7cc1578b3d6db3d2b25feadb4f755afb66467b39b6b7bad48285dcb3
+  client_secret: 7cd8f69e6c2bd4d96dceabd11ab5982a10402fe98961903ea642e1cc2a0b0297
+  pin:
+  authorization:
+    # everything below is autofilled by the script
+    access_token: 270d24eac366f831dcf75d4e53a9370b344bc8afc70e685daebd00d89ec50dcd
+    token_type: Bearer
+    expires_in: 7889238
+    refresh_token: a28b83c036977aba9c0e79ff4503c351ba0e226e674adf2e041b0b5a90b0978c
+    scope: public
+    created_at: 1735295939

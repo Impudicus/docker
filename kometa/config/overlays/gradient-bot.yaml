@@ -1,0 +1,12 @@
+templates:
+  GRADIENT:
+    builder_level: show
+    overlay:
+      name: gradient-bot
+      file: config/overlays/images/gradient-bot.png
+
+overlays:
+  Gradient-Bot:
+    template:
+      name: GRADIENT
+    plex_all: true

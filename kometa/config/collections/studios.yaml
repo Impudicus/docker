@@ -1,0 +1,136 @@
+templates:
+  STUDIO:
+    builder_level: show
+    default:
+      sort_title: 9
+      poster: missing-poster.jpg
+    sort_title: +E<<sort_title>>+<<collection_name>>+
+    file_poster: config/collections/posters/<<poster>>
+    collection_order: release.desc
+    schedule: daily
+    sync_mode: sync
+
+collections:
+  20th-Century-Studios:
+    template:
+      name: STUDIO
+      poster: studio-20th-century.jpg
+    plex_search:
+      validate: false
+      any:
+        studio.is:
+        - 20th Century Fox
+        - 20th Century Fox Animation
+        - 20th Century Studios
+        - 20th Digital Studio
+
+  Amazon-Studios:
+    template:
+      name: STUDIO
+      poster: studio-amazon-studios.jpg
+    plex_search:
+      validate: false
+      any:
+        studio.is:
+        - Amazon
+        - Amazon Studios
+        - Metro-Goldwyn-Mayer
+        - United Artists
+
+  Columbia-Pictures:
+    template:
+      name: STUDIO
+      poster: studio-columbia-pictures.jpg
+    plex_search:
+      validate: false
+      any:
+        studio.is:
+        - Columbia Pictures
+        - Columbia Pictures Industries
+
+  Marvel-Studios:
+    template:
+      name: STUDIO
+      poster: studio-marvel-studios.jpg
+    plex_search:
+      validate: false
+      any:
+        studio.is:
+        - Marvel
+        - Marvel Enterprises
+        - Marvel Entertainment
+        - Marvel Studios
+
+  Paramount-Studios:
+    template:
+      name: STUDIO
+      poster: studio-paramount-studios.jpg
+    plex_search:
+      validate: false
+      any:
+        studio.is:
+        - Paramount
+        - Paramount Animation
+        - Paramount Pictures
+        - Paramount Players
+
+  Sony-Pictures:
+    template:
+      name: STUDIO
+      poster: studio-sony-pictures.jpg
+    plex_search:
+      validate: false
+      any:
+        studio.is:
+        - Sony Pictures
+        - Sony Pictures Animation
+        - Sony Pictures Television Studios
+        - Sony Pictures Home Entertainment
+        - TriStar
+        - TriStar Pictures
+
+  Universal-Pictures:
+    template:
+      name: STUDIO
+      poster: studio-universal-pictures.jpg
+    plex_search:
+      validate: false
+      any:
+        studio.is:
+        - DreamWorks Animation
+        - DreamWorks Pictures
+        - Illumination
+        - Universal Pictures
+        - Universal Pictures Home Entertainment
+
+  Walt-Disney-Studios:
+    template:
+      name: STUDIO
+      poster: studio-walt-disney.jpg
+    plex_search:
+      validate: false
+      any:
+        studio.is:
+        - Disney Television Animation
+        - Lucasfilm
+        - Lucasfilm Animation
+        - Lucasfilm Ltd.
+        - Walt Disney Animation Studios
+        - Walt Disney Deature Animation
+        - Walt Disney Feature Animation
+        - Walt Disney Pictures
+        - Walt Disney Productions
+        - Walt Disney Studios
+        - Walt Disney Television
+
+  Warner-Brothers:
+    template:
+      name: STUDIO
+      poster: studio-warner-bros.jpg
+    plex_search:
+      validate: false
+      any:
+        studio.is:
+        - New Line Cinema
+        - Warner Bros. Pictures
+        - Warner Bros. Pictures Animation

@@ -1,0 +1,77 @@
+templates:
+  EDITION:
+    builder_level: show
+    default:
+      back_color: '#3b4252' # black
+      font_color: '#eceff4' # white
+      text: text(<<overlay_name>>)
+    overlay:
+      # overlay-settings
+      name: <<text>>
+      font: config/overlays/fonts/Roboto-Medium.ttf
+      font_color: <<font_color>>
+      font_size: 76
+      # position-settings
+      vertical_align: top
+      vertical_offset: 0
+      horizontal_align: left
+      horizontal_offset: 0
+      # background-settings
+      back_color: <<back_color>>
+      back_width: 1000
+      back_height: 100
+      back_radius: 0
+
+overlays:
+  blur:
+    builder_level: show
+    overlay:
+      name: blur(10)
+    plex_search:
+      any:
+        edition:
+        - Bad Audio
+        - Bad Quality
+        - Bad Video
+        - English Audio
+
+  Bad-Quality_Banner:
+    template:
+      name: EDITION
+      back_color: '#bf616a' # red
+      font_color: '#3b4252' # black
+      text: text(<<edition>>)
+    suppress_overlays:
+    - Unrated_Banner
+    - Default_Banner
+    plex_search:
+      any:
+        edition:
+        - Bad Audio
+        - Bad Quality
+        - Bad Video
+        - English Audio
+
+  Unrated_Banner:
+    template:
+      name: EDITION
+      back_color: '#d08770' # orange
+      font_color: '#3b4252' # black
+      text: text(<<edition>>)
+    suppress_overlays:
+    - Default_Banner
+    plex_search:
+      any:
+        edition:
+        - Uncut
+        - Unrated
+
+  Default_Banner:
+    template:
+      name: EDITION
+      back_color: '#8fbcbb' # turquoise
+      font_color: '#3b4252' # black
+      text: text(<<edition>>)
+    plex_all: true
+    filters:
+      edition.regex: '(?i)'
