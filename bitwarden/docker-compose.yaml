@@ -1,0 +1,41 @@
+name: 'bitwarden'
+
+networks:
+  caddy:
+    external: true
+  cloud:
+    external: true
+
+services:
+  bitwarden_db:
+    image: mariadb:11.4
+    container_name: bitwarden_db
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    env_file: .env
+    networks:
+      - cloud
+    # ports:
+    #   - 3306:3306/tcp
+    restart: unless-stopped
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/docker/bitwarden/db:/var/lib/mysql:rw
+
+  bitwarden:
+    image: bitwarden/self-host:beta
+    container_name: bitwarden
+    depends_on:
+      bitwarden_db:
+        condition: service_started
+    env_file: .env
+    networks:
+      - caddy
+      - cloud
+    # ports:
+    #   - 8080:8080/tcp
+    restart: unless-stopped
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/docker/bitwarden/data:/etc/bitwarden:rw

@@ -26,4 +26,11 @@ hilde.network, *.hilde.network {
         dns cloudflare 2gcmwee2I-yhZ1SFI3wK-s6IHgiqL_INo5aVhmgR
         resolvers 1.1.1.1
     }
+
+    @bitwarden host password.hilde.network
+    handle @bitwarden {
+        reverse_proxy bitwarden:8080 {
+            header_up X-Real-IP {remote_host}
+        }
+    }
 }
