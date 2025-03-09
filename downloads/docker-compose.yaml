@@ -1,0 +1,66 @@
+name: 'downloads'
+
+networks:
+  caddy:
+    external: true
+
+services:
+  gluetun:
+    image: qmcgaw/gluetun:latest
+    container_name: gluetun
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    env_file: .env
+    networks:
+      - caddy
+    restart: unless-stopped
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
+  jdownloader:
+    image: jlesage/jdownloader-2:latest
+    container_name: jdownloader
+    depends_on:
+      gluetun:
+        condition: service_healthy
+    env_file: .env
+    environment:
+      USER_ID: 1001
+      GROUP_ID: 44
+    network_mode: service:gluetun
+    # ports:
+    #   - 5800:5800/tcp
+    restart: unless-stopped
+    tmpfs:
+      - /output
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/docker/jdownloader/config:/config:rw
+      - /mnt/pool2/downloads:/downloads:rw
+
+  transmission:
+    image: linuxserver/transmission:latest
+    container_name: transmission
+    depends_on:
+      gluetun:
+        condition: service_healthy
+    env_file: .env
+    environment:
+      PUID: 1002
+      PGID: 44
+    network_mode: service:gluetun
+    # ports:
+    #   - 9091:9091/tcp
+    restart: unless-stopped
+    tmpfs:
+      - /watch
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/docker/transmission/config:/config:rw
+      - /mnt/docker/transmission/theme:/theme:rw
+      - /mnt/pool1/downloads:/downloads:rw
