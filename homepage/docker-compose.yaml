@@ -1,0 +1,28 @@
+name: 'homepage'
+
+networks:
+  caddy:
+    external: true
+  system:
+    external: true
+
+services:
+  homepage:
+    image: gethomepage/homepage:latest
+    container_name: homepage
+    env_file: .env
+    networks:
+      - caddy
+      - system
+    # ports:
+    #   - 3000:3000/tcp
+    restart: unless-stopped
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/docker/homepage/config:/app/config:rw
+      - /mnt/docker/homepage/icons:/app/public/icons:ro
+      - /mnt/docker/homepage/images:/app/public/images:ro
+      - /mnt/pool1/lost+found:/mnt/pool1:ro
+      - /mnt/pool2/lost+found:/mnt/pool2:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro

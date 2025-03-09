@@ -13,6 +13,20 @@ ts673a.local, *.ts673a.local {
         }
     }
 
+    @freshrss host freshrss.ts673a.local
+    handle @freshrss {
+        reverse_proxy freshrss:80 {
+            header_up X-Real-IP {remote_host}
+        }
+    }
+
+    @homepage host ts673a.local
+    handle @homepage {
+        reverse_proxy homepage:3000 {
+            header_up X-Real-IP {remote_host}
+        }
+    }
+
     @jdownloader host jdownloader.ts673a.local
     handle @jdownloader {
         reverse_proxy gluetun:5800 {

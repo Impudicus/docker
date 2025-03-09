@@ -1,0 +1,91 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/bookmarks/
+
+- Selfhosted:
+    - Debian:
+        - icon: si-debian-#a80030
+          href: https://debian.org/
+    - Selfh.st:
+        - icon: mdi-web-#e5e9f0
+          href: https://selfh.st/
+    - Awesome-Selfhosted:
+        - icon: si-github-#e5e9f0
+          href: https://github.com/awesome-selfhosted/awesome-selfhosted/
+    - Awesome-Sysadmin:
+        - icon: si-github-#e5e9f0
+          href: https://github.com/awesome-foss/awesome-sysadmin/
+    - Docker Hub:
+        - icon: si-docker-#1c85ed
+          href: https://hub.docker.com/
+    - ChatGPT:
+        - icon: si-openai-#74AA9c
+          href: https://chatgpt.com/?oai-dm=1/
+
+- Server/Domain:
+    - Cloudflare:
+        - icon: si-cloudflare-#f48120
+          href: https://cloudflare.com/de-de/
+    - Hetzner:
+        - icon: si-hetzner-#d50c2e
+          href: https://console.hetzner.cloud/
+    - Mail-Tester:
+        - icon: mdi-email-search-outline-#e5e9f0
+          href: https://mail-tester.com/
+    - Scaleway:
+        - icon: si-scaleway-#8e40ee
+          href: https://scaleway.com/
+
+- Media Databases:
+    - TMDB:
+        - icon: si-themoviedatabase-#01b4e4
+          href: https://themoviedb.org/
+    - IMDB:
+        - icon: si-imdb-#deb522
+          href: https://imdb.com/
+    - TPDB:
+        - icon: si-pastebin-#fa6940
+          href: https://theposterdb.com/
+    - Mediux:
+        - icon: si-pastebin-#945af2
+          href: https://mediux.pro/
+    - Bulk Resize:
+        - icon: mdi-resize-#e5e9f0
+          href: https://bulkresizephotos.com/en?type=filesize&filesize=1024000&quality=100/
+
+- Plex-Meta-Manager:
+    - Wiki:
+        - icon: si-wikipedia-#1e9571
+          href: https://kometa.wiki/en/latest/
+    - Github:
+        - icon: si-github-#1e9571
+          href: https://github.com/Kometa-Team/Kometa/
+    - Flaticon:
+        - icon: si-flat-#e5e9f0
+          href: https://flaticon.com/
+    - Nord-Theme:
+        - icon: si-codesandbox-#e5e9f0
+          href: https://nordtheme.com/docs/colors-and-palettes/
+    - Trash Guides:
+        - icon: mdi-trash-can-outline-#e5e9f0
+          href: https://trash-guides.info/
+
+- Downloads:
+    - Startseite:
+        - icon: mdi-download-box-outline-#FF9900
+          href: https://startseite.to/
+    - ddl-warez.cc:
+        - icon: mdi-download-box-outline-#71BED2
+          href: https://ddl-warez.cc/
+    - boerse.cx:
+        - icon: mdi-download-box-outline-#9D161E
+          href: https://boerse.cx/
+    - HD-Source:
+        - icon: mdi-television-#15648D
+          href: https://hd-source.to/
+    - Filmfans:
+        - icon: mdi-television-#03FC41
+          href: https://filmfans.org/
+    - Serienfans:
+        - icon: mdi-television-#FCB103
+          href: https://serienfans.org/

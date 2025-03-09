@@ -1,0 +1,45 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/settings/
+
+title: QNAP TS673a
+
+language: de
+
+background: 
+  image: /images/background.jpg
+  saturate: 75
+  brightness: 75
+  opacity: 75
+cardBlur: sm
+
+favicon: /icons/nas-16x16.png
+
+theme: dark
+color: neutral
+
+iconStyle: theme
+
+disableCollapse: true
+useEqualHeights: true
+headerStyle: boxed
+statusStyle: dot
+
+target: _blank
+
+hideVersion: false
+showStats: false
+hideErrors: true
+fiveColumns: true
+
+layout:
+  Cloud:
+    columns: 5
+  Media:
+    columns: 5
+  Download:
+    columns: 5
+  Monitor:
+    columns: 5
+  System:
+    columns: 5

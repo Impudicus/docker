@@ -1,0 +1,134 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/services/
+
+- Cloud:
+    - nextcloud:
+        href: https://cloud.hilde.network/
+        icon: sh-nextcloud.webp
+        server: localhost
+        container: nextcloud
+    - bitwarden:
+        href: https://password.hilde.network/
+        icon: sh-bitwarden.webp
+        server: localhost
+        container: bitwarden
+    - filebrowser:
+        href: https://files.hilde.network/
+        icon: filebrowser.svg
+        server: localhost
+        container: filebrowser
+    - roundcube:
+        href: https://hilde.email/
+        icon: sh-roundcube.webp
+        ping: hilde.email
+    - mealie:
+        href: https://food.hilde.network/
+        icon: sh-mealie.webp
+        server: localhost
+        container: mealie
+
+- Media:
+    - plex:
+        href: https://plex.tv/
+        icon: sh-plex.webp
+        server: localhost
+        container: plex
+    - tautulli:
+        href: https://tautulli.ts673a.local/
+        icon: sh-tautulli.webp
+        server: localhost
+        container: tautulli
+    - overseerr:
+        href: https://overseerr.ts673a.local/
+        icon: sh-overseerr.webp
+        server: localhost
+        container: overseerr
+    - kometa:
+        icon: sh-kometa.webp
+        server: localhost
+        container: kometa
+    - imagemaid:
+        icon: sh-kometa.webp
+        server: localhost
+        container: imagemaid
+    - stashapp:
+        href: https://stashapp.ts673a.local/
+        icon: /icons/stashapp.png
+        server: localhost
+        container: stashapp
+
+- Download:
+    - freshrss:
+        href: https://freshrss.ts673a.local/
+        icon: sh-freshrss.webp
+        server: localhost
+        container: freshrss
+    - transmission:
+        href: https://transmission.ts673a.local/
+        icon: sh-transmission.webp
+        server: localhost
+        container: transmission
+    - jdownloader:
+        href: https://jdownloader.ts673a.local
+        icon: sh-jdownloader.webp
+        server: localhost
+        container: jdownloader
+    - tdarr:
+        href: https://tdarr.ts673a.local
+        icon: sh-tdarr.webp
+        server: localhost
+        container: tdarr
+    - filebot:
+        href: https://filebot.ts673a.local
+        icon: filebot.svg
+        server: localhost
+        container: filebot
+
+- Monitor:
+    - portainer:
+        href: https://portainer.ts673a.local/
+        icon: sh-portainer.webp
+        server: localhost
+        container: portainer
+    - influxDB:
+        href: https://influxdb.ts673a.local/
+        icon: sh-influxdb.webp
+        server: localhost
+        container: influxdb
+    - grafana:
+        href: https://grafana.ts673a.local/
+        icon: sh-grafana.webp
+        server: localhost
+        container: grafana
+    - scrutiny:
+        href: https://scrutiny.ts673a.local/
+        icon: sh-scrutiny.webp
+        server: localhost
+        container: scrutiny-web
+
+- System:
+    - unifi:
+        href: https://192.168.1.1/
+        icon: sh-ubiquiti-unifi.webp
+        ping: 192.168.1.1
+    - home-assistant:
+        href: https://home.hilde.network/
+        icon: sh-home-assistant.webp
+        server: localhost
+        container: homeassistant
+    - caddy:
+        icon: sh-caddy.webp
+        server: localhost
+        container: caddy
+    - ddclient:
+        icon: sh-ddclient.webp
+        server: localhost
+        container: ddclient
+    - gluetun:
+        icon: sh-mullvad-vpn.webp
+        server: localhost
+        container: gluetun
+        widget:
+            type: gluetun
+            url: http://gluetun:8000

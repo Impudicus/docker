@@ -1,0 +1,32 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/widgets/
+
+- datetime:
+    text_size: xl
+    format:
+      dateStyle: long
+      timeStyle: short
+      hourCycle: h23
+
+- resources:
+    label: System
+    uptime: true
+- resources:
+    label: CPU
+    cpu: true
+    tempmin: 20
+    tempmax: 80
+    cputemp: true
+- resources:
+    label: MEM
+    memory: true
+- resources:
+    label: Root
+    disk: /
+- resources:
+    label: Pool1
+    disk: /mnt/pool1
+- resources:
+    label: Pool2
+    disk: /mnt/pool2
