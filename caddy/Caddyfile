@@ -6,6 +6,13 @@
 ts673a.local, *.ts673a.local {
     tls internal
 
+    @jdownloader host jdownloader.ts673a.local
+    handle @jdownloader {
+        reverse_proxy gluetun:5800 {
+            header_up X-Real-IP {remote_host}
+        }
+    }
+
     @portainer host portainer.ts673a.local
     handle @portainer {
         reverse_proxy portainer:9000 {
@@ -16,6 +23,13 @@ ts673a.local, *.ts673a.local {
     @tautulli host tautulli.ts673a.local
     handle @tautulli {
         reverse_proxy tautulli:8181 {
+            header_up X-Real-IP {remote_host}
+        }
+    }
+
+    @transmission host transmission.ts673a.local
+    handle @transmission {
+        reverse_proxy gluetun:9091 {
             header_up X-Real-IP {remote_host}
         }
     }
@@ -30,20 +44,6 @@ hilde.network, *.hilde.network {
     @bitwarden host password.hilde.network
     handle @bitwarden {
         reverse_proxy bitwarden:8080 {
-            header_up X-Real-IP {remote_host}
-        }
-    }
-
-    @jdownloader host jdownloader.ts673a.local
-    handle @jdownloader {
-        reverse_proxy gluetun:5800 {
-            header_up X-Real-IP {remote_host}
-        }
-    }
-
-    @transmission host transmission.ts673a.local
-    handle @transmission {
-        reverse_proxy gluetun:9091 {
             header_up X-Real-IP {remote_host}
         }
     }
