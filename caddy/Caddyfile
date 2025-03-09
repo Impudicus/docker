@@ -54,4 +54,11 @@ hilde.network, *.hilde.network {
             header_up X-Real-IP {remote_host}
         }
     }
+
+    @filebrowser host files.hilde.network
+    handle @filebrowser {
+        reverse_proxy filebrowser:80 {
+            header_up X-Real-IP {remote_host}
+        }
+    }
 }

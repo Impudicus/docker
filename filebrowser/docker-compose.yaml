@@ -1,0 +1,28 @@
+name: 'filebrowser'
+
+networks:
+  caddy:
+    external: true
+  tools:
+    external: true
+
+services:
+  filebrowser:
+    image: filebrowser/filebrowser:latest
+    container_name: filebrowser
+    env_file: .env
+    networks:
+      - caddy
+      - tools
+    # ports:
+    #   - 80:80/tcp
+    restart: unless-stopped
+    tmpfs:
+      - /srv
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/docker/filebrowser/filebrowser.json:/.filebrowser.json:rw
+      - /mnt/docker/filebrowser/database.db:/database.db:rw
+      - /mnt/pool1:/srv/pool1:ro
+      - /mnt/pool2:/srv/pool2:ro
