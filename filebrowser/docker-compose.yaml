@@ -14,8 +14,8 @@ services:
     networks:
       - caddy
       - tools
-    # ports:
-    #   - 80:80/tcp
+    ports:
+      - 8080:80/tcp
     restart: unless-stopped
     tmpfs:
       - /srv
