@@ -76,6 +76,13 @@ ts673a.local, *.ts673a.local {
         }
     }
 
+    @tdarr host tdarr.ts673a.local
+    handle @tdarr {
+        reverse_proxy tdarr:8265 {
+            header_up X-Real-IP {remote_host}
+        }
+    }
+
     @transmission host transmission.ts673a.local
     handle @transmission {
         reverse_proxy gluetun:9091 {

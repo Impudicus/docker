@@ -1,0 +1,31 @@
+name: 'tdarr'
+
+networks:
+  caddy:
+    external: true
+  tools:
+    external: true
+
+services:
+  tdarr:
+    image: haveagitgat/tdarr:latest
+    container_name: tdarr
+    env_file: .env
+    networks:
+      - caddy
+      - tools
+    # ports:
+    #   - 8265:8265/tcp
+    #   - 8266:8266/tcp
+    privileged: true
+    restart: unless-stopped
+    tmpfs:
+      - /app/logs
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/docker/tdarr/configs:/app/configs:rw
+      - /mnt/docker/tdarr/server:/app/server:rw
+      # storage
+      - /mnt/pool2/downloads:/downloads:rw
+      - /mnt/pool2/transcode:/transcode:rw
