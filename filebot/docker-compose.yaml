@@ -1,0 +1,27 @@
+name: 'filebot'
+
+networks:
+  caddy:
+    external: true
+  tools:
+    external: true
+
+services:
+  filebot:
+    image: jlesage/filebot:latest
+    container_name: filebot
+    env_file: .env
+    networks:
+      - caddy
+      - tools
+    # ports:
+    #   - 5800:5800/tcp
+    restart: unless-stopped
+    tmpfs:
+      - /output
+      - /watch
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/docker/filebot/config:/config:rw
+      - /mnt/pool2:/storage:rw

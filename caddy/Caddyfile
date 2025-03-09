@@ -6,6 +6,13 @@
 ts673a.local, *.ts673a.local {
     tls internal
 
+    @filebot host filebot.ts673a.local
+    handle @filebot {
+        reverse_proxy filebot:5800 {
+            header_up X-Real-IP {remote_host}
+        }
+    }
+
     @jdownloader host jdownloader.ts673a.local
     handle @jdownloader {
         reverse_proxy gluetun:5800 {
