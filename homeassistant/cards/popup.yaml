@@ -1,0 +1,152 @@
+# This is the popup card. It needs to be updated to your needs
+
+
+type: vertical-stack
+cards:
+  - type: custom:bubble-card
+    card_type: pop-up
+    hash: '#kitchen'                # Edit this to match the button that activates the popup
+    name: Kitchen
+    icon: mdi:silverware-variant
+    state: sensor.temperature       # Edit this
+    bg_blur: '20'
+    shadow_opacity: '20'
+    bg_opacity: '88'
+    
+    # Below are some custom styles that I use.
+    # The first and second adds white background color to the Exit cross and Header background.
+    # The third adds a colored background to the icon.
+    # Remove this if you want to keep the default styling.
+    styles: |
+      #header-container > div {background: #ffffff!important;}     
+      #header-container > button {background: #ffffff;}
+      .icon-container {background-color:#ffb581!important;}     
+    
+  - type: grid
+    columns: 1
+    square: false
+    cards:
+      - type: custom:bubble-card
+        card_type: separator
+        name: Lights
+        icon: mdi:led-strip
+        styles: |
+          .separator-container div:last-child {
+            opacity: 1!important;
+          }
+      - type: grid
+        columns: 2
+        square: false
+        cards:
+          - type: custom:button-card
+            name: Ceiling
+            icon: mdi:lightbulb
+            label: Living room
+            show_label: true
+            show_state: false
+            entity: light.light
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+            state:
+              - value: 'on'
+                styles:
+                  card:
+                    - background: >-
+                        linear-gradient(50deg, rgba(241,201,59,1) 30%,
+                        rgba(250,227,146,1) 100%)
+              - value: 'off'
+                styles:
+                  card:
+                    - background: '#ffffff'
+            styles:
+              icon:
+                - width: 24px
+                - color: black
+              img_cell:
+                - justify-self: end
+                - width: 30px
+                - height: 30px
+              name:
+                - justify-self: start
+                - font-size: 18px
+                - line-height: 40px
+                - font-weight: 600
+              label:
+                - justify-self: start
+                - font-size: 14px
+                - font-weight: 500
+              card:
+                - padding: 18px
+          - type: custom:button-card
+            name: Ceiling
+            icon: mdi:lightbulb
+            label: Living room
+            show_label: true
+            show_state: false
+            entity: light.strip
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+            state:
+              - value: 'on'
+                styles:
+                  card:
+                    - background: >-
+                        linear-gradient(50deg, rgba(241,201,59,1) 30%,
+                        rgba(250,227,146,1) 100%)
+              - value: 'off'
+                styles:
+                  card:
+                    - background: '#ffffff'
+            styles:
+              icon:
+                - width: 24px
+                - color: black
+              img_cell:
+                - justify-self: end
+                - width: 30px
+                - height: 30px
+              name:
+                - justify-self: start
+                - font-size: 18px
+                - line-height: 40px
+                - font-weight: 600
+              label:
+                - justify-self: start
+                - font-size: 14px
+                - font-weight: 500
+              card:
+                - padding: 18px
+                - background: '#ffffff'
+      - type: custom:gap-card
+        height: 20
+      - type: custom:bubble-card
+        card_type: separator
+        name: Sensors
+        icon: mdi:information
+        styles: |
+          .separator-container div:last-child {
+            opacity: 1!important;
+          }
+      - type: custom:mushroom-template-card
+        primary: Fridge
+        secondary: '{{ states(''sensor.temperature_fridge'') | round(1) }} °C'
+        icon: mdi:fridge
+        icon_color: black
+        card_mod:
+          style: |
+            mushroom-shape-icon {
+              --shape-color: none !important;
+            }      
+            ha-card { 
+              --ha-card-background: var(--contrast1);  
+              --primary-text-color: var(--contrast20);
+              --card-secondary-font-weight: 400;
+              box-shadow: none!important;
+            }
+            :host {
+              --mush-icon-size: 46px;
+            }           

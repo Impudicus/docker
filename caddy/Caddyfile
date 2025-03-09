@@ -73,4 +73,13 @@ hilde.network, *.hilde.network {
     handle @filebrowser {
         reverse_proxy filebrowser:80
     }
+
+    @homeassistant host home.hilde.network
+    handle @homeassistant {
+        reverse_proxy homeassistant:8123 {
+            header_up X-Real-IP {remote_host}
+            header_up X-Forwarded-For {remote_host}
+            header_up X-Forwarded-Proto {scheme}
+        }
+    }
 }

@@ -1,0 +1,75 @@
+#updates
+v2: I found a bug with the code that displays the clock. Add the time sensor to configuration.yaml and use the updated code below instead.
+
+# Template sensor for your configuration.yaml file:
+sensor:
+  - platform: template
+    sensors:
+      day:
+        value_template: "{{ ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][now().weekday()] }}"
+      date:
+        value_template: "{% set months = ['jan', 'feb', 'march', 'april', 'may', 'june', 'july', 'aug', 'sept', 'oct', 'november', 'dec'] %} {{ now().day | string + ' ' + months[now().month-1]}}"
+      time:
+        value_template: "{{ now().strftime('%H') }}:{{ now().strftime('%M')}}"         
+        
+        
+# Link to icons: https://basmilius.github.io/weather-icons/index-line.html        
+# Navigate to where your configuration.yaml file is stored and place your icons inside the www/weather_icons/ folder (create the folder)     
+        
+
+
+type: grid
+square: false
+columns: 2
+cards:
+  - type: custom:button-card
+    name: >
+      [[[ return states['sensor.day'].state + ", " + states['sensor.date'].state ]]]
+    label: >
+      [[[ return states['sensor.time'].state ]]]
+    show_label: true
+    styles:
+      grid:
+        - grid-template-areas: '"n" "l"'
+      card:
+        - background: none
+        - padding-left: 8px
+      name:
+        - justify-self: start
+        - font-size: 14px
+      label:
+        - justify-self: start
+        - font-size: 26px
+        - font-weight: 500
+  - type: custom:button-card
+    name: |                    # change to your indoor temperature
+      [[[ return states['sensor.gjennomsnitt_temp'].state + "°C" ]]]
+    label: >                    # change to your weather integration
+      [[[ return states['weather.forecast'].attributes.temperature          
+      + '<span style="font-size:0.6em">°C</span>' ]]]
+    show_label: true
+    custom_fields:
+      icon: |                    # change to your weather integration
+        [[[
+          var weather = states['weather.forecast'].state;
+          return '<img src = "/local/weather_icons/' + weather + '.svg" width="50" height="50" />'
+        ]]] 
+    styles:
+      grid:
+        - grid-template-areas: '"icon n" "icon l"'
+      card:
+        - background: none
+        - padding-right: 8px
+      name:
+        - justify-self: end
+        - font-size: 14px
+      label:
+        - justify-self: end
+        - font-size: 26px
+        - font-weight: 500
+      custom_fields:
+        icon:
+          - justify-self: end;
+          - align-self: end;
+          - padding-right: 10px
+          - margin-bottom: '-11px'

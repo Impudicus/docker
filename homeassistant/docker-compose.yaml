@@ -1,0 +1,63 @@
+name: 'homeassistant'
+
+networks:
+  caddy:
+    external: true
+  iot:
+    external: true
+
+services:
+  # mosquitto:
+  #   image: eclipse-mosquitto
+  #   container_name: mosquitto
+  #   env_file: .env
+  #   networks:
+  #     - iot
+  #   ports:
+  #     - 1883:1883/tcp
+  #     - 9001:9001/tcp 
+  #   restart: unless-stopped
+  #   volumes:
+  #     - /etc/timezone:/etc/timezone:ro
+  #     - /etc/localtime:/etc/localtime:ro
+  #     - /mnt/docker/homeassistant/mosquitto/config:/mosquitto/config:rw
+  #     - /mnt/docker/homeassistant/mosquitto/data:/mosquitto/data:rw
+  #     - /mnt/docker/homeassistant/mosquitto/log:/mosquitto/log:rw
+  
+  # govee2mqtt:
+  #   image: ghcr.io/wez/govee2mqtt:latest
+  #   container_name: govee2mqtt
+  #   depends_on:
+  #     mosquitto:
+  #       condition: service_started
+  #   env_file: .env
+  #   networks:
+  #     - iot
+  #   restart: unless-stopped
+  #   volumes:
+  #     - /etc/timezone:/etc/timezone:ro
+  #     - /etc/localtime:/etc/localtime:ro
+  #     - govee2mqtt_data:/data
+
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    container_name: homeassistant
+    env_file: .env
+    # links:
+    #   - mosquitto
+    networks:
+      - caddy
+      - iot
+    # ports:
+    #   - 8123:8123/tcp
+    privileged: true
+    restart: unless-stopped
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/docker/homeassistant/config:/config:rw
+      - /run/dbus:/run/dbus:ro
+
+# volumes:
+#   govee2mqtt_data:
+#     name: govee2mqtt_data

@@ -1,0 +1,36 @@
+- sensor:
+  - name: "Trash Next Pickup"
+    unique_id: trash_next_pickup
+    icon: mdi:calendar-clock-outline
+    state: >-
+      {% set start_time = state_attr('calendar.abfall', 'start_time') %}
+      {% if start_time %}
+        {% set time_difference = (as_timestamp(start_time) - now().timestamp()) / (60 * 60 * 24) %}
+        {% if time_difference >= 0 %}
+          {{ time_difference | round(0) }}
+        {% else %}
+          0
+        {% endif %}
+      {% else %}
+        "Unbekannt"
+      {% endif %}
+    attributes:
+      type: >-
+        {% set event = state_attr('calendar.abfall', 'message') %}
+        {% if event %}
+          {{ event.split(' am ')[0] }}
+        {% else %}
+          "Unbekannt"
+        {% endif %}
+      next: >-
+        {% set start_time = state_attr('calendar.abfall', 'start_time') %}
+        {% if start_time %}
+          {% set time_difference = (as_timestamp(start_time) - now().timestamp()) / (60 * 60 * 24) %}
+          {% if time_difference >= 0 %}
+            in {{ time_difference | round(0) }} Tagen
+          {% else %}
+            heute
+          {% endif %}
+        {% else %}
+          Unbekannt
+        {% endif %}
