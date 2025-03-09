@@ -90,6 +90,13 @@ hilde.network, *.hilde.network {
         }
     }
 
+    @mealie host food.hilde.network
+    handle @mealie {
+        reverse_proxy mealie:9000 {
+            header_up X-Real-IP {remote_host}
+        }
+    }
+
     @nextcloud host cloud.hilde.network
     handle @nextcloud {
         header Strict-Transport-Security "max-age=31536000; includeSubDomains"

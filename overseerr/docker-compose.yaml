@@ -1,0 +1,23 @@
+name: 'overseerr'
+
+networks:
+  caddy:
+    external: true
+  media:
+    external: true
+
+services:
+  overseerr:
+    image: linuxserver/overseerr:latest
+    container_name: overseerr
+    env_file: .env
+    networks:
+      - caddy
+      - media
+    # ports:
+    #   - 5055:5055/tcp
+    restart: unless-stopped
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/docker/overseerr/config:/config:rw
