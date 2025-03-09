@@ -55,6 +55,13 @@ ts673a.local, *.ts673a.local {
         }
     }
 
+    @scrutiny host scrutiny.ts673a.local
+    handle @scrutiny {
+        reverse_proxy scrutiny-web:8080 {
+            header_up X-Real-IP {remote_host}
+        }
+    }
+
     @tautulli host tautulli.ts673a.local
     handle @tautulli {
         reverse_proxy tautulli:8181 {

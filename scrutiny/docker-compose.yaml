@@ -1,0 +1,51 @@
+name: 'scrutiny'
+
+networks:
+  caddy:
+    external: true
+  monitor:
+    external: true
+
+services:
+  scrutiny-web:
+    image: ghcr.io/analogj/scrutiny:master-web
+    container_name: scrutiny-web
+    env_file: .env
+    networks:
+      - caddy
+      - monitor
+    # ports:
+    #   - 8080:8080/tcp
+    restart: unless-stopped
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/docker/scrutiny/scrutiny.yaml:/opt/scrutiny/config/scrutiny.yaml:rw
+
+  scrutiny-collector:
+    image: ghcr.io/analogj/scrutiny:master-collector
+    container_name: scrutiny-collector
+    cap_add:
+      - SYS_RAWIO
+      - SYS_ADMIN
+    depends_on:
+      scrutiny-web:
+        condition: service_started
+    devices:
+      - /dev/nvme0n1:/dev/nvme0
+      - /dev/nvme1n1:/dev/nvme1
+      - /dev/nvme2n1:/dev/nvme2
+      - /dev/sda:/dev/sda
+      - /dev/sdb:/dev/sdb
+      - /dev/sdc:/dev/sdc
+      - /dev/sdd:/dev/sdd
+      - /dev/sde:/dev/sde
+      - /dev/sdf:/dev/sdf
+    env_file: .env
+    networks:
+      - monitor
+    restart: unless-stopped
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /run/udev:/run/udev:ro
