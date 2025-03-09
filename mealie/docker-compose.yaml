@@ -1,0 +1,23 @@
+name: 'mealie'
+
+networks:
+  caddy:
+    external: true
+  cloud:
+    external: true
+
+services:
+  mealie:
+    image: hkotel/mealie:latest
+    container_name: mealie
+    env_file: .env
+    networks:
+      - caddy
+      - cloud
+    # ports:
+    #   - 9000:9000/tcp
+    restart: unless-stopped
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/docker/mealie/data:/app/data:rw
