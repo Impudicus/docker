@@ -1,0 +1,15 @@
+{
+    admin :2020
+    email acme@hilde.email
+}
+
+hilde.email, alpha.hilde.email {
+    tls {
+        dns cloudflare 2gcmwee2I-yhZ1SFI3wK-s6IHgiqL_INo5aVhmgR
+        resolvers 1.1.1.1
+    }
+
+    reverse_proxy roundcube:80 {
+        header_up X-Real-IP {remote_host}
+    }
+}

@@ -1,0 +1,81 @@
+name: mailserver
+
+networks:
+  caddy:
+    external: true
+  mail:
+    external: true
+
+services:
+  caddy:
+    container_name: caddy
+    image: localhost/caddy:latest
+    environment:
+      TZ: Europe/Berlin
+    networks:
+      - caddy
+    ports:
+      - 80:80/tcp
+      - 443:443/tcp
+    restart: unless-stopped
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - /mnt/docker/caddy/data:/data/caddy:rw
+
+  mailserver:
+    container_name: mailserver
+    image: ghcr.io/docker-mailserver/docker-mailserver:latest
+    cap_add:
+      - NET_ADMIN
+    depends_on:
+      caddy:
+        condition: service_started
+    env_file: .env
+    hostname: alpha.hilde.email
+    networks:
+      - mail
+    ports:
+      - 25:25/tcp
+      - 110:110/tcp
+      - 143:143/tcp
+      - 465:465/tcp
+      - 587:587/tcp
+      - 993:993/tcp
+      - 995:995/tcp
+    restart: unless-stopped
+    stop_grace_period: 1m
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/docker/mailserver/config/:/tmp/docker-mailserver:rw
+      - /mnt/docker/mailserver/mail-data/:/var/mail:rw
+      - /mnt/docker/mailserver/mail-state/:/var/mail-state:rw
+      - /mnt/docker/mailserver/mail-logs/:/var/log/mail:rw
+      - /mnt/docker/caddy/data/certificates/acme-v02.api.letsencrypt.org-directory/${FQDN}/${FQDN}.crt:/etc/letsencrypt/live/${FQDN}/fullchain.pem
+      - /mnt/docker/caddy/data/certificates/acme-v02.api.letsencrypt.org-directory/${FQDN}/${FQDN}.key:/etc/letsencrypt/live/${FQDN}/privkey.pem
+
+  roundcube:
+    image: roundcube/roundcubemail:latest
+    container_name: roundcube
+    depends_on:
+      caddy:
+        condition: service_started
+      mailserver:
+        condition: service_started
+    env_file: .env
+    networks:
+      - caddy
+      - mail
+    # ports:
+    #   - 80:80/tcp
+    restart: unless-stopped
+    tmpfs:
+      - /var/www/html
+      - /var/roundcube/config
+      - /var/roundcube/db
+      - /tmp/roundcube-temp
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
