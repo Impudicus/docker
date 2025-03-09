@@ -62,6 +62,13 @@ ts673a.local, *.ts673a.local {
         }
     }
 
+    @stashapp host stashapp.ts673a.local
+    handle @stashapp {
+        reverse_proxy stashapp:3000 {
+            header_up X-Real-IP {remote_host}
+        }
+    }
+
     @tautulli host tautulli.ts673a.local
     handle @tautulli {
         reverse_proxy tautulli:8181 {

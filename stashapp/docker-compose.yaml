@@ -1,0 +1,28 @@
+name: 'stashapp'
+
+networks:
+  caddy:
+    external: true
+  media:
+    external: true
+
+services:
+  stashapp:
+    image: stashapp/stash:latest
+    container_name: stashapp
+    env_file: .env
+    networks:
+      - caddy
+      - media
+    # ports:
+    #   - 3000:3000/tcp
+    restart: unless-stopped
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/docker/stashapp/config:/root/.stash:rw
+      - /mnt/docker/stashapp/blobs:/blobs:rw
+      - /mnt/docker/stashapp/cache:/cache:rw
+      - /mnt/docker/stashapp/generated:/generated:rw
+      - /mnt/docker/stashapp/metadata:/metadata:rw
+      - /mnt/pool1/porn:/data:ro
