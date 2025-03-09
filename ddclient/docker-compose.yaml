@@ -1,0 +1,20 @@
+name: 'ddclient'
+
+networks:
+  system:
+    external: true
+
+services:
+  ddclient:
+    image: linuxserver/ddclient:latest
+    container_name: ddclient
+    env_file: .env
+    networks:
+      - system
+    restart: unless-stopped
+    tmpfs:
+      - /config
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/docker/ddclient/ddclient.conf:/config/ddclient.conf:rw
