@@ -1,0 +1,19 @@
+name: 'imagemaid'
+
+networks:
+  media:
+    external: true
+
+services:
+  imagemaid:
+    image: kometateam/imagemaid:latest
+    container_name: imagemaid
+    env_file: .env
+    networks:
+      - media
+    restart: no
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/docker/imagemaid/config:/config:rw
+      - /mnt/docker/plex:/plex:rw
