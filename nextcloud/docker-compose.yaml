@@ -1,0 +1,60 @@
+name: 'nextcloud'
+
+networks:
+  caddy:
+    external: true
+  cloud:
+    external: true
+
+services:
+  nextcloud_db:
+    image: mariadb:11.4
+    container_name: nextcloud_db
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    env_file: .env
+    networks:
+      - cloud
+    # ports:
+    #   - 3306:3306/tcp
+    restart: unless-stopped
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/docker/nextcloud/db:/var/lib/mysql:rw
+
+  nextcloud_redis:
+    image: redis:alpine
+    container_name: nextcloud_redis
+    command: redis-server --requirepass ${REDIS_HOST_PASSWORD}
+    networks:
+      - cloud
+    # ports:
+    #   - 6379:6379/tcp
+    restart: unless-stopped
+    tmpfs:
+      - /data
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
+  nextcloud:
+    image: nextcloud:stable
+    container_name: nextcloud
+    depends_on:
+      nextcloud_db:
+        condition: service_started
+      nextcloud_redis:
+        condition: service_started
+    env_file: .env
+    networks:
+      - caddy
+      - cloud
+    # ports:
+    #   - 80:80/tcp
+    restart: unless-stopped
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/docker/nextcloud/html:/var/www/html:rw
+      - /mnt/docker/nextcloud/config:/var/www/html/config:rw
+      - /mnt/docker/nextcloud/data:/var/www/html/data:rw
