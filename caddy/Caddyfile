@@ -27,6 +27,13 @@ ts673a.local, *.ts673a.local {
         }
     }
 
+    @influxdb host influxdb.ts673a.local
+    handle @influxdb {
+        reverse_proxy influxdb:8086 {
+            header_up X-Real-IP {remote_host}
+        }
+    }
+
     @jdownloader host jdownloader.ts673a.local
     handle @jdownloader {
         reverse_proxy gluetun:5800 {
