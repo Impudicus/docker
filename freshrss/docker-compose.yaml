@@ -1,0 +1,41 @@
+name: 'freshrss'
+
+networks:
+  caddy:
+    external: true
+  tools:
+    external: true
+
+services:
+  freshrss_db:
+    image: mariadb:11.4
+    container_name: freshrss_db
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    env_file: .env
+    networks:
+      - tools
+    # ports:
+    #   - 3306:3306/tcp
+    restart: unless-stopped
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/docker/freshrss/db:/var/lib/mysql:rw
+
+  freshrss:
+    image: linuxserver/freshrss:latest
+    container_name: freshrss
+    depends_on:
+      freshrss_db:
+        condition: service_started
+    env_file: .env
+    networks:
+      - caddy
+      - tools
+    # ports:
+    #   - 80:80/tcp
+    restart: unless-stopped
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/docker/freshrss/config:/config:rw
