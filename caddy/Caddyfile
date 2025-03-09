@@ -5,6 +5,13 @@
 
 ts673a.local, *.ts673a.local {
     tls internal
+
+    @portainer host portainer.ts673a.local
+    handle @portainer {
+        reverse_proxy portainer:9000 {
+            header_up X-Real-IP {remote_host}
+        }
+    }
 }
 
 hilde.network, *.hilde.network {
