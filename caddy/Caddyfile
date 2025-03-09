@@ -41,6 +41,13 @@ ts673a.local, *.ts673a.local {
         }
     }
 
+    @overseerr host overseerr.ts673a.local
+    handle @overseerr {
+        reverse_proxy overseerr:5055 {
+            header_up X-Real-IP {remote_host}
+        }
+    }
+
     @portainer host portainer.ts673a.local
     handle @portainer {
         reverse_proxy portainer:9000 {
