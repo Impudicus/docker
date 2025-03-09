@@ -1,0 +1,15 @@
+{
+    admin :2020
+    email acme@hilde.email
+}
+
+ts673a.local, *.ts673a.local {
+    tls internal
+}
+
+hilde.network, *.hilde.network {
+    tls {
+        dns cloudflare 2gcmwee2I-yhZ1SFI3wK-s6IHgiqL_INo5aVhmgR
+        resolvers 1.1.1.1
+    }
+}
