@@ -1,0 +1,22 @@
+name: 'caddy'
+
+networks:
+  caddy:
+    external: true
+
+services:
+  caddy:
+    image: localhost/caddy:latest
+    container_name: caddy
+    env_file: .env
+    networks:
+      - caddy
+    ports:
+      - 80:80/tcp
+      - 443:443/tcp
+    restart: unless-stopped
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/docker/caddy/data:/data:rw
+      - /mnt/docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
