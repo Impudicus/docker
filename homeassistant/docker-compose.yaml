@@ -42,9 +42,9 @@ services:
   homeassistant:
     image: ghcr.io/home-assistant/home-assistant:stable
     container_name: homeassistant
+    devices:
+      - /dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_26a7822a4a4fef11902845b3174bec31-if00-port0:/dev/ttyUSB0
     env_file: .env
-    # links:
-    #   - mosquitto
     networks:
       - caddy
       - iot
