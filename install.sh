@@ -2,7 +2,6 @@
 
 set -o errexit  # Exit on error
 set -o pipefail # Exit when a command in a pipe fails
-# set -o nounset  # Exit when using an undeclared variable
 
 readonly SCRIPT_NAME=$(basename "$0")
 readonly SCRIPT_TIME=$SECONDS
@@ -85,10 +84,10 @@ pruneDockerEnvironment() {
 printHelp() {
     echo "Usage: $SCRIPT_NAME [OPTIONS] TASK"
     echo "Options:"
-    echo "  -h, --help          Display this help message."
+    echo "  --help          Display this help message."
     echo "Tasks:"
-    echo "  init                Init docker environment."
-    echo "  prune               Prune docker environment."
+    echo "  init            Initialize docker environment."
+    echo "  prune           Prune docker environment."
     return 0
 }
 printLog() {
@@ -119,7 +118,7 @@ main() {
     # --------------------------------------------------
     # pre checks
     if [[ $EUID -ne 0 ]]; then
-        printLog "error" "Script has to be run with root user privileges!"
+        printLog "error" "This script must be run as root!" 
         return 1
     fi
 
@@ -129,7 +128,7 @@ main() {
     }
 
     # --------------------------------------------------
-    # variables
+    # global variables
 
     # --------------------------------------------------
     # parse arguments
@@ -143,12 +142,12 @@ main() {
                 readonly docker_prune='true'
                 break;
                 ;;
-            -h | --help)
+            -h|--help)
                 printHelp
                 return 0
                 ;;
             *)
-                printLog "error" "Invalid argument; use --help for further information!"
+                printLog "error" "Unknown parameter '$1'; use --help for further information!"
                 return 1
                 ;;
         esac
@@ -162,18 +161,18 @@ main() {
 
     # --------------------------------------------------
     if [[ -n $docker_init ]]; then
-        printLog "info" "Current task: Init docker environment."
+        printLog "info" "Initializing docker environment ..."
         initDockerEnvironment
     fi
 
     if [[ -n $docker_prune ]]; then
-        printLog "info" "Current task: Prune docker environment."
+        printLog "info" "Pruning docker environment ..."
         pruneDockerEnvironment
     fi
 
     # --------------------------------------------------
     local run_time=$((SECONDS - SCRIPT_TIME))
-    printLog "success" "Script finished successfully. Execution time: $run_time seconds."
+    printLog "success" "Script completed successfully. Run time: $run_time seconds."
     return 0
 }
 
